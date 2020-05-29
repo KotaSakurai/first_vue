@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+      <meta charset="UTF-8">
+      <title>HTML5</title>
+      <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <ul id="v-for-object">
+      <li v-for="(value, name, index) of object">
+        {{ index }}. {{ name }}: {{ value}}
+      </li>
+    </ul>
+
+    <script>
+      new Vue({
+        el: '#v-for-object',
+        data: {
+          object: {
+            title: 'Test',
+            author: 'Jane',
+            publishedAt: '2020-05-29'
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
