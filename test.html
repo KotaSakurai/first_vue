@@ -1,0 +1,153 @@
+<html>
+    < class="js_check" input[type="checkbox"]> check box 1</input>
+    < class="js_check" input[type="checkbox"]> check box 2</input>
+    < class="js_check" input[type="tel"]'>
+
+</html>
+
+
+<script>
+
+    let checkElement = $(".js_check");
+
+    checkElement.on('input',function() {
+        if (ある条件のとき) {
+            button.disable = true;
+        } else {
+            button.disable = false;
+        }
+    })
+
+    ある条件のとき
+
+    - 数値がただしいとき
+      - inspectNumber() => true
+    - チェックボックスが２つチェックされているとき
+      - inspectCheckBox() => true
+
+    if ( inspectNumber() && inspectCheckBox() )
+
+    function inspectNumber() {
+        var n = $(document.querySelector('input[type="tel"]')).val();
+
+        if (n >= "1" && n <= "1000000") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function inspectCheckBox() {
+        let checkbox = $(document.querySelectorAll('input[type="checkbox"]'));
+        let checked = $(document.querySelectorAll('input[type="checkbox"]:checked'));
+
+        if (checkbox.length === checked.length){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
+
+
+    $(function() {
+        $('#submit').prop('disabled', true);
+    });
+
+    let checkbox = document.querySelectorAll('input[type="checkbox"]');
+    let checked = document.querySelectorAll('input[type="checkbox"]:checked');
+    let price = document.querySelector('input[type="tel"]');
+    let button = document.querySelector('input[type="submit"]');
+    checkbox.forEach( check => check.onchange = checkValue );
+
+    function checkValue(event){
+        if (checkbox.length === checked.length){
+            $(price).on('input',function() {
+                var n = $(this).val();
+                if (n >= "1" && n <= "1000000") {
+                    button.disabled = false;
+                } else {
+                    button.disabled = true;
+                }
+            });
+        }
+        else {
+            button.disabled = true;
+            $(price).on('input',function() {
+                button.disabled = true;
+            });
+        }
+    }
+
+    $(function() {
+        $(price).on('input',function() {
+            var n = $(this).val();
+            if (n < "1" && n > "1000000") {
+                $(checkbox).change(function() {
+                var val = $(this).val();{
+                let checked = document.querySelectorAll('input[type="checkbox"]:checked');
+                    if (checkbox.length === checked.length) {
+                        button.disabled = false;
+                    } else {
+                        button.disabled = true;
+                    }
+                }
+                });
+            } else {
+                $(checkbox).change(function() {
+                var val = $(this).val();{
+                let checked = document.querySelectorAll('input[type="checkbox"]:checked');
+                    if (checkbox.length === checked.length){
+                        button.disabled = false;
+                    } else {
+                        button.disabled = true;
+                    }
+                }
+                });
+            }
+        });
+    });
+
+    $(function() {
+        $('input[type="checkbox"]').change(function() {
+        var val = $('input[type="checkbox"]').val();{
+        let checked = document.querySelectorAll('input[type="checkbox"]:checked');
+            if (checkbox.length != checked.length){
+                button.disabled = true;
+            }
+            else {
+                $(price).on('input',function() {
+                    var n = $(this).val();
+                    if (n >= 1 && n <= 1000000) {
+                        button.disabled = false;
+                    } else {
+                        button.disabled = true;
+                    }
+                });
+            }
+        }
+        });
+    });
+
+    $(function() {
+        $('input[type="tel"]').on('input',function() {
+            let n = $(this).val();
+            if (n === "0") {
+                $(this).val("");
+            }
+        });
+    });
+
+    $('input[type="tel"]').keypress( function ( e ) {
+        if ( e.which == 13 ) {
+        $(this).blur();
+        return false;
+        }
+    })
+
+    function sliceMaxLength(elem, maxLength) {
+        elem.value = elem.value.slice(0, maxLength);
+    }
+</script>
