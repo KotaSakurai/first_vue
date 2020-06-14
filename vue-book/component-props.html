@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+      <title>component</title>
+        <script src="https://unpkg.com/vue"></script>
+    </head>
+    <body>
+      <div id='fruits-component'>
+        <ol>
+          <!-- fruitsItemsとしてv-bindで渡しそうだが、v-forと合わせてcomponentへ引き渡すため、その時はfruitとして渡すことになる。 -->
+          <!-- Vueの方のdata.fruitsItemsは v-forの fruitsItemsに引き渡されて、fruitに。bindのfruits-itemとしてfruitの中身が送られる。 -->
+          <!-- fruitはbindの値と一致するので、propsを経由してfruitsItemとして最終的にテンプレートに引き渡される。 -->
+          <fruit-item-name v-for='fruit in fruitsItems' :key='fruit.name' :fruits-item='fruit'></fruit-item-name>
+        </ol>
+      </div>
+
+      <script>
+        Vue.component('fruit-item-name', {
+          props: {
+            fruitsItem: {
+              type: Object,
+              required: true
+            }
+          },
+          template: '<li>{{fruitsItem.name}}</li>'
+        })
+
+        new Vue({
+          el: '#fruits-component',
+          data: {
+            fruitsItems: [
+              { name: '梨'},
+              { name: 'イチゴ'}
+            ]
+          }
+        })
+      </script>
+    </body>
+</html>
