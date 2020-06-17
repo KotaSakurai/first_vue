@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+      <title>component</title>
+        <script src="https://unpkg.com/vue"></script>
+        <script src="https://unpkg.com/vue-router"></script>
+    </head>
+    <body>
+      <div id='app'>
+        <router-link to="/top">トップページ</router-link>
+        <router-link to="/users">ユーザ一覧ページ</router-link>
+        <!-- router-viewがtemplate内容を受け取って描画する -->
+        <router-view></router-view>
+      </div>
+      <script>
+        var router = new VueRouter({
+          routes: [
+            {
+              path: '/top',
+              component: {
+                template: '<div>topです</div>'
+              }
+            },
+            {
+              path: '/users',
+              component: {
+                template: '<div>ユーザ一覧ページです</div>'
+              }
+            }
+          ]
+        })
+
+        var app = new Vue({
+          router: router
+        }).$mount('#app')
+      </script>
+    </body>
+</html>
