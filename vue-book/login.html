@@ -129,7 +129,7 @@
       var filteredUsers = userData.filter(function (user){
         return user.id=== parseInt(userId, 10)
       })
-      callback(null, filteredUsers && filterdUsers[0])
+      callback(null, filteredUsers && filteredUsers[0])
     }, 1000)
   }
 
@@ -195,7 +195,7 @@
         }).bind(this))
       }
     }
-  }]
+  }
 
   var UserDatail = {
     template: '#user-detail',
@@ -235,13 +235,12 @@
     data: function() {
       return {
         sending: false,
-        user: this.deafultUser(),
+        user: this.defaultUser(),
         error: null
       }
     },
 
     created: function() {
-
     },
 
     methods: {
@@ -267,7 +266,7 @@
             this.error = err.toString()
           } else {
             this.error = null
-            this.user = this.deafultUser()
+            this.user = this.defaultUser()
             alert('新規ユーザが登録されました')
             this.$router.push('/users')
           }
@@ -281,7 +280,7 @@
       {
         path: '/top',
         component: {
-          tempalte: '<div>トップページです</div>'
+          template: '<div>トップページです</div>'
         }
       },
       {
